@@ -36,3 +36,70 @@
     transform: rotate(360deg);
   }
 }
+
+/* define variables here*/
+:root {
+  --normal: #a8a77a;
+  --fire: #ee8130;
+  --water: #6390f0;
+  --electric: #f7d02c;
+  --grass: #7ac74c;
+  --ice: #96d9d6;
+  --fighting: #c22e28;
+  --poison: #a33ea1;
+  --ground: #e2bf65;
+  --flying: #a98ff3;
+  --psychic: #f95587;
+  --bug: #a6b91a;
+  --rock: #b6a136;
+  --ghost: #735797;
+  --dragon: #6f35fc;
+  --dark: #705746;
+  --steel: #b7b7ce;
+  --fairy: #d685ad;
+  --caught: url("https://64.media.tumblr.com/dd3f6857ecc417bfbea89bb8ed37a5f7/tumblr_ox6e6kF3HG1sox2ufo1_400.gif");
+  --unCaught: url("https://i.pinimg.com/originals/6b/2c/8e/6b2c8e8c2e08ee9604f002c6da595939.gif");
+}
+
+.card {
+  display: inline-block;
+  width: 450px;
+  height: 450px;
+  border-style: dashed;
+  border-radius: 25%;
+  margin: 10px;
+  background-position-y: 25%;
+  background-repeat: no-repeat;
+  background-image: url("https://i.pinimg.com/originals/93/80/6e/93806e1f03bbc5a2ef358b0128e0263e.gif")
+}
+
+.card img {
+  height: 200px;
+  width: 200px;
+  animation-name: example;
+  animation-iteration-count: inifinate;
+  animation-timing-function: ease;
+  border-radius: 25%
+}
+
+@keyframes example {
+  0% {
+    margin-top: 10px;
+  }
+
+  25% {
+    margin-top: 0px;
+  }
+
+  50% {
+    margin-top: 10px;
+  }
+
+  75% {
+    margin-top: 0px;
+  }
+
+  100% {
+    margin-top: 10px;
+  }
+}
