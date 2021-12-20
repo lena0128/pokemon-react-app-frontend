@@ -24,6 +24,13 @@ class App extends Component {
 // 
 // 
 
+runAway = () => {
+  this.setState({
+    team: []
+  })
+}
+
+
 changePage = (event) => {
   console.log(event)
     this.setState({
@@ -68,7 +75,7 @@ changePage = (event) => {
   return (
     <div className="App">
       <NavBar changePage={this.changePage} />
-      {this.state.page === "pokemons" ? <PokemonsContainer team={this.state.team} addPokemon={this.addPokemon} pokemons={this.state.pokemons} /> : <TeamContainer team={this.state.team} />}
+      {this.state.page === "pokemons" ? <PokemonsContainer team={this.state.team} addPokemon={this.addPokemon} pokemons={this.state.pokemons} /> : <TeamContainer team={this.state.team} runAway={this.runAway} />}
     </div>
   );
   }

@@ -1,35 +1,57 @@
 import React, { Component } from 'react';
+import TeamPokemon from '../components/TeamPokemon'
 
 class TeamContainer extends Component {
 
-    componentDidMount(){
-       setInterval( this.privacy, 1000 )
-    }
+  state = {
+    timeLeft: 6
+  }
+
+   componentDidMount(){
+     if(this.props.team.length > 0) {
+       this.timerId = setInterval( this.privacy, 1000 )
+     } else {
+       console.log("There are no pokemon here, stay as long as you want")
+     }
+      
+   }
 
     privacy = () => {
-        console.log("timer")
+        if(this.state.timeLeft > 0) {
+        this.setState((prevState) => ({
+          timeLeft: prevState.timeLeft - 1
+        })
+        )
+      } else {
+        alert("HEY YOU VIOLATED THEIR PRIVACY! ThEY ALL RUN AWAY")
+        // make team equal to an empty array
+        this.props.runAway()
+        clearInterval(this.timerId) 
+      }
     }
 
-    mappedTeam = () => (this.props.team.map((pokemon) => ( // this function returns an ARRAY
-        <div className='card' key={pokemon.id}>
-            <p>Name: {pokemon.name}</p>
-            <p>Type: {pokemon.poke_type}</p>
-            <img src={pokemon.back_image} />
-        </div>)
-    ))
+    componentWillUnmount(){
+      clearInterval(this.timerId) 
+    }
+
+    mappedTeam = () => (this.props.team.map((pokemon, index) => ( 
+        <TeamPokemon pokemon={pokemon} key={index} />)
+    ))    
+  
+
+    noTeamMember = () => (
+      <>
+          <h1>You have no Pokemon on your team.</h1>
+          <img src="https://media.tenor.com/images/7c355668e41f8cf511fe30c8483379d0/tenor.gif" alt="pokemon gif" />
+      </>)
+    
 
     render(){
     return (
         <div id="team-container">
             <h2>Your Pokemon are SHY!</h2>
-          { (this.mappedTeam.length === 0) ?  
-            <React.Fragment>
-                <h1>You have no Pokemon on your team.</h1>
-                <img src="https://media.tenor.com/images/7c355668e41f8cf511fe30c8483379d0/tenor.gif" />
-            </React.Fragment>
-            :
-            this.mappedTeam
-          }
+            <h3>You have {this.state.timeLeft} seconds left before your pokemon run!</h3>
+          { (this.mappedTeam().length === 0) ? this.noTeamMember() : this.mappedTeam() }
         </div>
       )
     }
