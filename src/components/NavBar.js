@@ -1,10 +1,21 @@
 import React from 'react';
+import {
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-const NavBar = (props) => {
+
+function NavBar(){
     return(
         <div id="nav-bar">
-            <h1 id="pokemons" onClick={props.changePage}>Pokemons</h1>
-            <h1 id="teams" onClick={props.changePage}>View Team</h1>
+            <Link to="pokemons">
+              <h1 id="pokemons" >Pokemons</h1>
+            </Link>
+
+            <Link to="teams">
+              <h1 id="teams" >View Team</h1>
+            </Link>
         </div>
     )
 }

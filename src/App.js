@@ -4,25 +4,23 @@ import PokemonsContainer from './containers/PokemonsContainer';
 import TeamContainer from './containers/TeamContainer';
 import NavBar from './components/NavBar';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 const url = "http://localhost:5000/pokemons"
 
 class App extends Component {
 
   state = {
-    page: "pokemons",
     pokemons: [],
     team: [],
     loading: true,
   }
-
-  // runAway = () => {
-  //   this.setState({
-  //     team: []
-  //   })
-  // }
-// 
-// 
 
 runAway = () => {
   this.setState({
@@ -31,12 +29,12 @@ runAway = () => {
 }
 
 
-changePage = (event) => {
-  console.log(event)
-    this.setState({
-      page: event.target.id,
-    })
-}
+// changePage = (event) => {
+//   console.log(event)
+//     this.setState({
+//       page: event.target.id,
+//     })
+// }
 
  addPokemon = (id) => {
    console.log("this pokemon's id", id)
@@ -74,8 +72,11 @@ changePage = (event) => {
   render(){
   return (
     <div className="App">
-      <NavBar changePage={this.changePage} />
-      {this.state.page === "pokemons" ? <PokemonsContainer team={this.state.team} addPokemon={this.addPokemon} pokemons={this.state.pokemons} /> : <TeamContainer team={this.state.team} runAway={this.runAway} />}
+    <Router>
+      <NavBar  />
+      <PokemonsContainer team={this.state.team} addPokemon={this.addPokemon} pokemons={this.state.pokemons} /> 
+      <TeamContainer team={this.state.team} runAway={this.runAway} />
+    </Router>  
     </div>
   );
   }
