@@ -73,32 +73,34 @@
   background-image: url("https://i.pinimg.com/originals/93/80/6e/93806e1f03bbc5a2ef358b0128e0263e.gif")
 }
 
+a img {
+  width: 70px;
+  margin-top: 10px;
+}
+
 .card img {
   height: 200px;
   width: 200px;
   animation-name: example;
-  animation-iteration-count: inifinate;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
   animation-timing-function: ease;
-  border-radius: 25%
+  border-radius: 50%;
 }
 
 @keyframes example {
   0% {
     margin-top: 10px;
   }
-
   25% {
     margin-top: 0px;
   }
-
   50% {
     margin-top: 10px;
   }
-
   75% {
     margin-top: 0px;
   }
-
   100% {
     margin-top: 10px;
   }

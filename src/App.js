@@ -4,12 +4,8 @@ import PokemonsContainer from './containers/PokemonsContainer';
 import TeamContainer from './containers/TeamContainer';
 import NavBar from './components/NavBar';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 
 
 const url = "http://localhost:5000/pokemons"
@@ -73,9 +69,19 @@ runAway = () => {
   return (
     <div className="App">
     <Router>
-      <NavBar  />
-      <PokemonsContainer team={this.state.team} addPokemon={this.addPokemon} pokemons={this.state.pokemons} /> 
-      <TeamContainer team={this.state.team} runAway={this.runAway} />
+        <NavBar  />
+        <Switch>
+        
+           <Route path="/pokemons" component={() => {
+            const pokemonContainerJSX = <PokemonsContainer team={this.state.team} addPokemon={this.addPokemon} pokemons={this.state.pokemons} /> 
+            return (this.state.pokemons.length > 0 ? pokemonContainerJSX : <h1>Loading....</h1>)
+          }} />
+
+            <Route exact path="/teams" component={() => <TeamContainer runAway={this.runAway} team={this.state.team} />} />
+            
+            <Route path="/" render={() => <h1>ROUTE DOES NOT EXIST!</h1>} />
+
+      </Switch>
     </Router>  
     </div>
   );
